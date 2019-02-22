@@ -1,6 +1,6 @@
 {
-  "defaultSeverity": "warning",
-  "extends": ["tslint-config-standard", "tslint-eslint-rules", "tslint-config-prettier"],
+  "defaultSeverity": "error",
+  "extends": ["tslint:recommended", "tslint-config-standard", "tslint-config-prettier"],
   "jsRules": {},
   "rules": {
     "max-line-length": {
@@ -21,7 +21,8 @@
     "no-floating-promises": true,
     "no-return-await": true,
     "class-name": true,
-    "interface-name": [true, "always-prefix"]
+    "interface-name": [true, "always-prefix"],
+    "max-classes-per-file": false
   },
   "rulesDirectory": []
 }

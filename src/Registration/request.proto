@@ -1,0 +1,10 @@
+syntax = "proto3";
+package Registration;
+
+message Request {
+  string client_id = 1;
+}
+
+message Response {
+  string server_id = 1;
+}
