@@ -3,9 +3,6 @@ import { appLogger } from './logger';
 const logger = appLogger.makeLogger('main');
 
 import { AppClient } from './Client';
-import { AppServer } from './Server';
-
-import { interval } from 'rxjs';
 
 const opts: NatsConnectionOptions = {
   payload: Payload.BINARY,
@@ -14,13 +11,10 @@ const opts: NatsConnectionOptions = {
 
 connect(opts)
   .then((natsClient: Client) => {
-    const s = new AppServer(natsClient);
-    s.registration();
-
-    const i$ = interval(2000);
-    i$.subscribe(counter => {
-      logger.debug('Counter = ', counter);
-    });
+    natsClient.publish('req1', 'HELLO1');
+    natsClient.publish('req1', 'HELLO2');
+    natsClient.publish('req1', 'HELLO3');
+    natsClient.publish('req1', 'HELLO4');
 
     const c = new AppClient(natsClient);
     c.register('lllll');

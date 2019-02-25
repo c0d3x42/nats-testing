@@ -7,4 +7,5 @@ message Request {
 
 message Response {
   string server_id = 1;
+  string client_id = 2;
 }

@@ -212,6 +212,7 @@ $root.Registration = (function() {
          * @memberof Registration
          * @interface IResponse
          * @property {string|null} [serverId] Response serverId
+         * @property {string|null} [clientId] Response clientId
          */
 
         /**
@@ -236,6 +237,14 @@ $root.Registration = (function() {
          * @instance
          */
         Response.prototype.serverId = "";
+
+        /**
+         * Response clientId.
+         * @member {string} clientId
+         * @memberof Registration.Response
+         * @instance
+         */
+        Response.prototype.clientId = "";
 
         /**
          * Creates a new Response instance using the specified properties.
@@ -263,6 +272,8 @@ $root.Registration = (function() {
                 writer = $Writer.create();
             if (message.serverId != null && message.hasOwnProperty("serverId"))
                 writer.uint32(/* id 1, wireType 2 =*/10).string(message.serverId);
+            if (message.clientId != null && message.hasOwnProperty("clientId"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.clientId);
             return writer;
         };
 
@@ -299,6 +310,9 @@ $root.Registration = (function() {
                 switch (tag >>> 3) {
                 case 1:
                     message.serverId = reader.string();
+                    break;
+                case 2:
+                    message.clientId = reader.string();
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -338,6 +352,9 @@ $root.Registration = (function() {
             if (message.serverId != null && message.hasOwnProperty("serverId"))
                 if (!$util.isString(message.serverId))
                     return "serverId: string expected";
+            if (message.clientId != null && message.hasOwnProperty("clientId"))
+                if (!$util.isString(message.clientId))
+                    return "clientId: string expected";
             return null;
         };
 
@@ -355,6 +372,8 @@ $root.Registration = (function() {
             var message = new $root.Registration.Response();
             if (object.serverId != null)
                 message.serverId = String(object.serverId);
+            if (object.clientId != null)
+                message.clientId = String(object.clientId);
             return message;
         };
 
@@ -371,10 +390,14 @@ $root.Registration = (function() {
             if (!options)
                 options = {};
             var object = {};
-            if (options.defaults)
+            if (options.defaults) {
                 object.serverId = "";
+                object.clientId = "";
+            }
             if (message.serverId != null && message.hasOwnProperty("serverId"))
                 object.serverId = message.serverId;
+            if (message.clientId != null && message.hasOwnProperty("clientId"))
+                object.clientId = message.clientId;
             return object;
         };
 

@@ -97,6 +97,9 @@ export namespace Registration {
 
         /** Response serverId */
         serverId?: (string|null);
+
+        /** Response clientId */
+        clientId?: (string|null);
     }
 
     /** Represents a Response. */
@@ -110,6 +113,9 @@ export namespace Registration {
 
         /** Response serverId. */
         public serverId: string;
+
+        /** Response clientId. */
+        public clientId: string;
 
         /**
          * Creates a new Response instance using the specified properties.
