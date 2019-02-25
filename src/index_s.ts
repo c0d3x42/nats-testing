@@ -6,6 +6,8 @@ import { AppServer } from './Server';
 
 import { interval } from 'rxjs';
 
+import { Instance } from './models';
+
 const opts: NatsConnectionOptions = {
   payload: Payload.BINARY,
   servers: ['localhost']

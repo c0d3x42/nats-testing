@@ -8,6 +8,9 @@ import { map } from 'rxjs/operators';
 import { NatsError } from 'ts-nats/lib/error';
 import { Registration } from './Registration/compiled';
 
+import { v4 } from 'uuid';
+import { Instance } from './models';
+
 export class AppServer {
   public c: number;
   constructor(public client: Client) {
@@ -26,6 +29,12 @@ export class AppServer {
         // construct a response
         const response = Registration.Response.encode({ serverId: 'xxxx', clientId: request.clientId }).finish();
         this.client.publish(msg.reply, response);
+
+        Instance.query()
+          .insert({ uuid: v4() })
+          .then(saved => {
+            logger.debug('saved', saved);
+          });
       }
       observer.next(msg);
     };
